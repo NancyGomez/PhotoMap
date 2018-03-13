@@ -1,6 +1,6 @@
-# Lab 6 - *Name of App Here*
+# Lab 6 - *PhotoMap*
 
-**Name of your app** is an app that allows the user to search for locations using the [Foursquare API](https://developer.foursquare.com/docs) and create a pin with an image annotation.
+**PhotoMap** is an app that allows the user to search for locations using the [Foursquare API](https://developer.foursquare.com/docs) and create a pin with an image annotation.
 
 Time spent: **X** hours spent in total
 
@@ -39,7 +39,7 @@ Describe any challenges encountered while building the app.
 
 ## License
 
-Copyright [yyyy] [name of copyright owner]
+Copyright [2018] [Nancy and Carlos]
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

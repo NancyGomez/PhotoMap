@@ -17,6 +17,7 @@ class LocationsViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
 
+    var image : UIImage!
     var results: NSArray = []
     
     override func viewDidLoad() {
