@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, LocationsViewControllerDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     
@@ -69,10 +69,22 @@ class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate,
         if(segue.identifier == "tagSegue"){
             let destVC = segue.destination as! LocationsViewController
             destVC.image = self.image
+            destVC.delegate = self
         }
         
         // Pass the selected object to the new view controller.
         
+    }
+    
+    func locationsPickedLocation(controller: LocationsViewController, latitude: NSNumber, longitude: NSNumber, photo: UIImage) {
+        let locationCoordinate = CLLocationCoordinate2DMake(latitude.doubleValue, longitude.doubleValue)
+        
+        self.navigationController?.popToViewController(self, animated: true)
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = locationCoordinate
+        annotation.title = "\(latitude), \(longitude)"
+        mapView.addAnnotation(annotation)
     }
     
 

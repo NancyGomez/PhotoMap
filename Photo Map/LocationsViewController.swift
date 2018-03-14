@@ -8,11 +8,17 @@
 
 import UIKit
 
+protocol LocationsViewControllerDelegate : class {
+    func locationsPickedLocation(controller: LocationsViewController, latitude: NSNumber, longitude: NSNumber, photo: UIImage)
+}
+
 class LocationsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 
+    weak var delegate : LocationsViewControllerDelegate!
+    
     // TODO: Fill in actual CLIENT_ID and CLIENT_SECRET
-    let CLIENT_ID = "CLIENT_ID GOES HERE"
-    let CLIENT_SECRET = "CLIENT_SECRET GOES HERE"
+    let CLIENT_ID = "VXH3QDKMBV4REGL5RQ5ZZ5HOT331HH4OWKKIEFNHDVNG1V4R"
+    let CLIENT_SECRET = "4Q40YH3GVK4RIP5YDQVLGYWG2GBKRJCUSJEBI5MSAGUWOELW"
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -95,6 +101,21 @@ class LocationsViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
         });
         task.resume()
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        // This is the selected venue
+        let venue = results[(indexPath as NSIndexPath).row] as! NSDictionary
+        
+        let lat = venue.value(forKeyPath: "location.lat") as! NSNumber
+        let lng = venue.value(forKeyPath: "location.lng") as! NSNumber
+        
+        let latString = "\(lat)"
+        let lngString = "\(lng)"
+        
+        print(latString + " " + lngString)
+        delegate.locationsPickedLocation(controller: self, latitude: lat, longitude: lng, photo: image)
+
     }
 
 }
