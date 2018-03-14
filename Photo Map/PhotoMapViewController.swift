@@ -95,6 +95,18 @@ class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate,
         mapView.addAnnotation(annotation)
     }
     
+    // When user taps on the disclosure button you can perform a segue to navigate to another view controller
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        print("??")
+        if control == view.rightCalloutAccessoryView{
+            print("Nani")
+            
+            //Perform a segue here to navigate to another viewcontroller
+            // On tapping the disclosure button you will get here
+            self.performSegue(withIdentifier: "fullImageSegue", sender: nil)
+        }
+    }
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let reuseID = "myAnnotationView"
         
@@ -108,8 +120,12 @@ class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate,
         let imageView = annotationView?.leftCalloutAccessoryView as! UIImageView
         imageView.image = image
         
+        var button = UIButton(type: UIButtonType.detailDisclosure) as UIButton // button with info sign in it
+        annotationView?.rightCalloutAccessoryView = button
+        
         return annotationView
     }
+    
     
 
 }
