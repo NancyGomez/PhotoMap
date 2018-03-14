@@ -78,6 +78,9 @@ class PhotoMapViewController: UIViewController, UIImagePickerControllerDelegate,
             let destVC = segue.destination as! LocationsViewController
             destVC.image = self.image
             destVC.delegate = self
+        } else if (segue.identifier == "fullImageSegue") {
+            let destVC = segue.destination as! FullImageViewController
+            destVC.image = self.image
         }
         
         // Pass the selected object to the new view controller.
